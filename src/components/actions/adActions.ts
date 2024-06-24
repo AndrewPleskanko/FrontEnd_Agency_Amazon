@@ -1,24 +1,6 @@
+import { FETCH_ADS_REQUEST, FETCH_ADS_SUCCESS, FETCH_ADS_FAILURE, SET_SORT_TYPE, SET_FILTER_TYPE } from './actionTypes';
+import { AdActionTypes } from './actionInterfaces';
 import { Ad } from '../../types';
-
-export const FETCH_ADS_REQUEST = 'FETCH_ADS_REQUEST';
-export const FETCH_ADS_SUCCESS = 'FETCH_ADS_SUCCESS';
-export const FETCH_ADS_FAILURE = 'FETCH_ADS_FAILURE';
-
-interface FetchAdsRequestAction {
-    type: typeof FETCH_ADS_REQUEST;
-}
-
-interface FetchAdsSuccessAction {
-    type: typeof FETCH_ADS_SUCCESS;
-    ads: Ad[];
-}
-
-interface FetchAdsFailureAction {
-    type: typeof FETCH_ADS_FAILURE;
-    error: string;
-}
-
-export type AdActionTypes = FetchAdsRequestAction | FetchAdsSuccessAction | FetchAdsFailureAction;
 
 export const fetchAdsRequest = (): AdActionTypes => {
     return {
@@ -39,22 +21,17 @@ export const fetchAdsFailure = (error: string): AdActionTypes => {
         error,
     };
 };
-export const fetchAds = () => {
-    return (dispatch: any) => {
-        dispatch(fetchAdsRequest());
-        fetch('http://localhost:8080/api/v1/ads')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                console.log(response)
-                return response.json();
-            })
-            .then(ads => {
-                dispatch(fetchAdsSuccess(ads));
-            })
-            .catch(error => {
-                dispatch(fetchAdsFailure(error.toString()));
-            });
+
+export const setSortType = (sortType: string): AdActionTypes => {
+    return {
+        type: SET_SORT_TYPE,
+        payload: sortType,
+    };
+};
+
+export const setFilterType = (filterType: string): AdActionTypes => {
+    return {
+        type: SET_FILTER_TYPE,
+        payload: filterType,
     };
 };

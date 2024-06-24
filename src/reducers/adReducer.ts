@@ -1,17 +1,28 @@
-import { AdActionTypes, FETCH_ADS_REQUEST, FETCH_ADS_SUCCESS, FETCH_ADS_FAILURE } from '../components/actions/adActions';
-import { Ad } from '../types';
+import {
+    FETCH_ADS_REQUEST,
+    SET_SORT_TYPE,
+    SET_FILTER_TYPE,
+    FETCH_ADS_SUCCESS,
+    FETCH_ADS_FAILURE
+} from '../components/actions/actionTypes';
+import {AdActionTypes} from '../components/actions/actionInterfaces';
+import {Ad} from '../types';
 import rootReducer from "./reducers";
 
 interface AdState {
     loading: boolean;
     ads: Ad[];
     error: string;
+    sortType: string;
+    filterType: string;
 }
 
 const initialState: AdState = {
     loading: false,
     ads: [],
     error: '',
+    sortType: 'name',
+    filterType: '',
 };
 
 const adReducer = (state = initialState, action: AdActionTypes): AdState => {
@@ -35,6 +46,16 @@ const adReducer = (state = initialState, action: AdActionTypes): AdState => {
                 loading: false,
                 ads: [],
                 error: action.error,
+            };
+        case SET_SORT_TYPE:
+            return {
+                ...state,
+                sortType: action.payload,
+            };
+        case SET_FILTER_TYPE:
+            return {
+                ...state,
+                filterType: action.payload,
             };
         default:
             return state;

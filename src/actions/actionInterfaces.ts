@@ -1,5 +1,5 @@
-import { Ad } from '../../types';
-import { FETCH_ADS_REQUEST, FETCH_ADS_SUCCESS, FETCH_ADS_FAILURE, SET_SORT_TYPE, SET_FILTER_TYPE } from './actionTypes';
+import { Ad } from '../types';
+import { FETCH_ADS_REQUEST, FETCH_ADS_SUCCESS, FETCH_ADS_FAILURE, SET_SORT_TYPE, SET_FILTER_TYPE } from './adActionInterfaces';
 
 interface FetchAdsRequestAction {
     type: typeof FETCH_ADS_REQUEST;

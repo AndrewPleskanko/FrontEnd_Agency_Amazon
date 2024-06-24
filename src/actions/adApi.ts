@@ -1,14 +1,18 @@
-import {fetchAdsRequest, fetchAdsSuccess, fetchAdsFailure} from './adActions';
+// adThunks.ts
+
+import { Dispatch } from 'redux';
+import { fetchAdsRequest, fetchAdsSuccess, fetchAdsFailure } from './adActions';
+import { RootState } from '../store';
 
 export const fetchAds = () => {
-    return (dispatch: any) => {
+    return (dispatch: Dispatch<any>, getState: () => RootState) => {
         dispatch(fetchAdsRequest());
         fetch('http://localhost:8080/api/v1/ads')
             .then(response => {
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
-                console.log(response)
+                console.log(response);
                 return response.json();
             })
             .then(ads => {
@@ -21,15 +25,16 @@ export const fetchAds = () => {
 };
 
 export const fetchSortedAds = (sortType: string, sortOrder: string) => {
-    return (dispatch: any) => {
+    return (dispatch: Dispatch<any>) => {
         dispatch(fetchAdsRequest());
-        fetch(`http://localhost:8080/api/v1/ads/sortedAds?sort=${sortType}&order=${sortOrder}`).then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            console.log(response)
-            return response.json();
-        })
+        fetch(`http://localhost:8080/api/v1/ads/sortedAds?sort=${sortType}&order=${sortOrder}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                console.log(response);
+                return response.json();
+            })
             .then(ads => {
                 dispatch(fetchAdsSuccess(ads));
             })
@@ -37,4 +42,4 @@ export const fetchSortedAds = (sortType: string, sortOrder: string) => {
                 dispatch(fetchAdsFailure(error.toString()));
             });
     };
-}
+};

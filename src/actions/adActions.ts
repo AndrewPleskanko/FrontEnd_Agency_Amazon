@@ -1,4 +1,4 @@
-import { FETCH_ADS_REQUEST, FETCH_ADS_SUCCESS, FETCH_ADS_FAILURE, SET_SORT_TYPE, SET_FILTER_TYPE } from './adActionInterfaces';
+import { FETCH_ADS_REQUEST, FETCH_ADS_SUCCESS, FETCH_ADS_FAILURE, SET_SORT_TYPE, SET_FILTER_TYPE } from './adActionTypes';
 import { AdActionTypes } from './actionInterfaces';
 import { Ad } from '../types';
 

@@ -1,5 +1,3 @@
-// adThunks.ts
-
 import { Dispatch } from 'redux';
 import { fetchAdsRequest, fetchAdsSuccess, fetchAdsFailure } from './adActions';
 import { RootState } from '../store';

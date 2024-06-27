@@ -4,7 +4,7 @@ import {
     SET_FILTER_TYPE,
     FETCH_ADS_SUCCESS,
     FETCH_ADS_FAILURE
-} from '../actions/adActionInterfaces';
+} from '../actions/adActionTypes';
 import {AdActionTypes} from '../actions/actionInterfaces';
 import {Ad} from '../types';
 import rootReducer from "./reducers";
